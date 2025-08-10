@@ -1,1 +1,44 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+.swc/
+.cache/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# IDE/editor
+.idea/
+.vscode/
 .history/
+
+# OS
+.DS_Store
+
+# Env files (keep example committed)
+.env
+.env.*
+!.env.example
+
+# Vercel/Turbo
+.vercel/
+.turbo/
+
+# Prisma (sqlite artifacts, if used)
+prisma/*.db
+prisma/*.db-journal
+
