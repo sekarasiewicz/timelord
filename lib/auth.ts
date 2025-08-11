@@ -11,7 +11,12 @@ export const {
 } = NextAuth({
   adapter: PrismaAdapter(db),
   session: { strategy: "database" },
-  providers: [GitHub],
+  providers: [
+    GitHub({
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
+    }),
+  ],
   pages: { signIn: "/signin" },
   callbacks: {
     // Enforce auth in middleware: only allow when a session exists
