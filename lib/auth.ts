@@ -13,6 +13,12 @@ export const {
   session: { strategy: "database" },
   providers: [GitHub],
   pages: { signIn: "/signin" },
+  callbacks: {
+    // Enforce auth in middleware: only allow when a session exists
+    authorized({ auth }) {
+      return !!auth;
+    },
+  },
 });
 
 

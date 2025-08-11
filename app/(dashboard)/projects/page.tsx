@@ -3,10 +3,11 @@ import { db } from "@/lib/db";
 import { projectMonthTotalMs } from "@/lib/summaries";
 import { msToHhMm, toMonthISO } from "@/lib/date";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function ProjectsPage({ searchParams }: { searchParams: { status?: string; month?: string; search?: string } }) {
   const session = await auth();
-  if (!session?.user?.id) return null;
+  if (!session?.user?.id) redirect("/signin");
   const userId = session.user.id;
   const status = (searchParams.status === "ARCHIVED" ? "ARCHIVED" : "ACTIVE") as "ACTIVE" | "ARCHIVED";
   const month = searchParams.month ?? toMonthISO();

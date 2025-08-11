@@ -4,10 +4,11 @@ import { msToHhMm, toMonthISO } from "@/lib/date";
 import { startOfMonth, endOfMonth } from "@/lib/time";
 import Link from "next/link";
 import TaskListClient from "./TaskListClient";
+import { redirect } from "next/navigation";
 
 export default async function ProjectDetail({ params, searchParams }: { params: { projectId: string }; searchParams: { month?: string } }) {
   const session = await auth();
-  if (!session?.user?.id) return null;
+  if (!session?.user?.id) redirect("/signin");
   const userId = session.user.id;
   const month = searchParams.month ?? toMonthISO();
   const from = startOfMonth(month);
