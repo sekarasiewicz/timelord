@@ -5,12 +5,8 @@ const nextConfig = {
     serverActions: { bodySizeLimit: '2mb' },
   },
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
-    ],
+    remotePatterns: [{ protocol: 'https', hostname: 'avatars.githubusercontent.com' }],
   },
-};
+}
 
-export default nextConfig;
-
-
+export default nextConfig

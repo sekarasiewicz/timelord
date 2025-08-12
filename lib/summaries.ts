@@ -1,9 +1,9 @@
-import { db } from "./db";
-import { startOfMonth, endOfMonth } from "./time";
+import { db } from './db'
+import { endOfMonth, startOfMonth } from './time'
 
 export async function projectMonthTotalMs(userId: string, month: string, projectId: string): Promise<number> {
-  const from = startOfMonth(month);
-  const to = endOfMonth(from);
+  const from = startOfMonth(month)
+  const to = endOfMonth(from)
   const rows = await db.timeEntry.findMany({
     where: {
       task: { projectId, project: { userId } },
@@ -14,12 +14,10 @@ export async function projectMonthTotalMs(userId: string, month: string, project
       ],
     },
     select: { startTime: true, endTime: true },
-  });
+  })
   return rows.reduce((acc, r) => {
-    const s = new Date(Math.max(+r.startTime, +from));
-    const e = new Date(Math.min(+(r.endTime ?? new Date()), +to));
-    return acc + Math.max(0, +e - +s);
-  }, 0);
+    const s = new Date(Math.max(+r.startTime, +from))
+    const e = new Date(Math.min(+(r.endTime ?? new Date()), +to))
+    return acc + Math.max(0, +e - +s)
+  }, 0)
 }
-
-

@@ -1,5 +1,5 @@
-"use client";
-import { signIn } from "next-auth/react";
+'use client'
+import { signIn } from 'next-auth/react'
 
 export default function SignInPage() {
   return (
@@ -7,12 +7,10 @@ export default function SignInPage() {
       <h1 className="text-2xl font-semibold">Sign in</h1>
       <button
         className="inline-flex items-center gap-2 rounded bg-black text-white px-4 py-2 hover:opacity-90"
-        onClick={() => signIn("github")}
+        onClick={() => signIn('github')}
       >
         Continue with GitHub
       </button>
     </div>
-  );
+  )
 }
-
-
