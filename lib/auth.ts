@@ -1,4 +1,4 @@
-import { PrismaAdapter } from '@auth/prisma-adapter'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import NextAuth from 'next-auth'
 import GitHub from 'next-auth/providers/github'
 import { db } from './db'
@@ -13,8 +13,8 @@ export const {
   session: { strategy: 'database' },
   providers: [
     GitHub({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
   pages: { signIn: '/signin' },
