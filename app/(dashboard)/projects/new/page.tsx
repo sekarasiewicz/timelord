@@ -1,6 +1,8 @@
 'use client'
+
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function NewProjectPage() {
   const router = useRouter()
@@ -25,20 +27,22 @@ export default function NewProjectPage() {
       <h1 className="text-2xl font-semibold mb-4">New Project</h1>
       <form onSubmit={onSubmit} className="space-y-4">
         <div className="space-y-1">
-          <label className="text-sm">Name</label>
+          <label htmlFor="name" className="text-sm">
+            Name
+          </label>
           <input value={name} onChange={(e) => setName(e.target.value)} required />
         </div>
         <div className="space-y-1">
-          <label className="text-sm">Description</label>
+          <label htmlFor="description" className="text-sm">
+            Description
+          </label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div className="flex gap-2">
-          <button disabled={loading} className="bg-blue-600 text-white px-3 py-1 rounded">
-            Create
-          </button>
-          <button type="button" onClick={() => router.back()} className="border px-3 py-1 rounded">
+          <Button disabled={loading}>Create</Button>
+          <Button type="button" onClick={() => router.back()}>
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </div>
