@@ -1,6 +1,8 @@
 'use client'
-import { useRouter, useSearchParams } from 'next/navigation'
+
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 type TaskItem = {
   id: string
@@ -12,8 +14,6 @@ type TaskItem = {
 
 export default function TaskListClient({ projectId, tasks }: { projectId: string; tasks: TaskItem[] }) {
   const router = useRouter()
-  const params = useSearchParams()
-  const month = params.get('month') ?? ''
 
   const [newTaskName, setNewTaskName] = useState('')
   const [newTaskDesc, setNewTaskDesc] = useState('')
@@ -83,9 +83,7 @@ export default function TaskListClient({ projectId, tasks }: { projectId: string
             value={newTaskDesc}
             onChange={(e) => setNewTaskDesc(e.target.value)}
           />
-          <button className="bg-blue-600 text-white rounded px-3 py-2" onClick={createTask}>
-            Create
-          </button>
+          <Button onClick={createTask}>Create</Button>
         </div>
       </div>
 
@@ -128,25 +126,25 @@ function TaskRow({
         </div>
         <div className="flex items-center gap-2">
           {task.activeEntry ? (
-            <button className="bg-orange-600 text-white rounded px-3 py-1" onClick={onStop}>
+            <Button className="bg-orange-600 text-white rounded px-3 py-1" onClick={onStop}>
               Pause
-            </button>
+            </Button>
           ) : (
-            <button className="bg-green-600 text-white rounded px-3 py-1" onClick={onStart}>
+            <Button className="bg-green-600 text-white rounded px-3 py-1" onClick={onStart}>
               Play
-            </button>
+            </Button>
           )}
-          <button className="border rounded px-3 py-1" onClick={onDelete}>
+          <Button className="border rounded px-3 py-1" onClick={onDelete}>
             Delete
-          </button>
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <input type="datetime-local" value={start} onChange={(e) => setStart(e.target.value)} />
         <input type="datetime-local" value={end} onChange={(e) => setEnd(e.target.value)} />
-        <button className="border rounded px-3 py-2" onClick={() => onAddManual(start, end)}>
+        <Button className="border rounded px-3 py-2" onClick={() => onAddManual(start, end)}>
           Add manual time
-        </button>
+        </Button>
       </div>
     </div>
   )
