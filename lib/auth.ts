@@ -1,14 +1,9 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import NextAuth from 'next-auth'
+import NextAuth, { getServerSession, type NextAuthOptions } from 'next-auth'
 import GitHub from 'next-auth/providers/github'
 import { db } from './db'
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: { strategy: 'database' },
   providers: [
@@ -18,10 +13,9 @@ export const {
     }),
   ],
   pages: { signIn: '/signin' },
-  callbacks: {
-    // Enforce auth in middleware: only allow when a session exists
-    authorized({ auth }) {
-      return !!auth
-    },
-  },
-})
+}
+
+export const auth = () => getServerSession(authOptions)
+
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }
